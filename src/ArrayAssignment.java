@@ -2,7 +2,7 @@ import java.util.Random;
 /**
  * This class includes several different, unrelated homework methods.
  * 
- * @author Include Your Name Here
+ * @author Christian Novgrod
  * @version 1.0
  *
  */
@@ -28,7 +28,7 @@ public class ArrayAssignment {
 	public String showMap(boolean[][] map)
     {
         String str = "";
-        // TODO: code here
+
         for ( int i = 0; i < map.length; i++)
         {
             for (int j = 0; j < map[i].length; j++)
@@ -57,17 +57,26 @@ public class ArrayAssignment {
 	 */
     public boolean[][] createMines()
     {
+        
+        // These variables store 2D array lengths & the count for the loop.
         Random ran = new Random();
-        // TODO: code here
         boolean[][] mine = new boolean[10][10];
-        for (int i = 0; i < 9; i++)
-        {
-            for (int j = 0; j < 9; j++)
+
+       int row = 10;
+       int col = 10; 
+       int count = 0; 
+       //This while loop creates the mines throught the 2D array.
+       while(count < 10)
+       {
+            int rRow = ran.nextInt(row);
+            int rCol = ran.nextInt(col);
+            if (!mine[rRow][rCol])
             {
-                mine[i][j] = ran.nextBoolean();
+                mine[rRow][rCol] = true;
+                count++;
             }
-        }                                          
-    	return mine; // Remove this once you have a real return value!
+       }                                      
+    	return mine; 
     }
 
     /**
