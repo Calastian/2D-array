@@ -90,22 +90,79 @@ public class ArrayAssignment {
     public double[] findAverages(double[][] list)
     {
         // TODO: code here
+        double sum = 0;
+        double average = 0.0;
+        double[] db = new double[list.length];
 
-    	return null; // Remove this once you have a real return value!
+        for (int i = 0; i < list.length; i++)
+        {
+            sum = 0;
+            for (int j = 0; j < list[i].length; j++)
+            {
+                sum += list[i][j];
+            }
+            try{
+                if (list[i].length > 0)
+                 {
+                    average = sum / list[i].length;
+                    db[i] = average;
+                 }
+            } catch (ArrayIndexOutOfBoundsException e)
+            {
+                System.out.println("Error: " + e);
+            }
+        }
+        
+    	return db; // Remove this once you have a real return value!
     }
 
     /**
      * Returns true if the array contains no duplicate integers, or false otherwise.
      * By default, an empty array, with 0 rows and columns, contains no duplicates.
      * 
-     * @param array the array to check for duplicates
+     * @param  the array to check for duplicates
      * 
      * @return true where there are no duplicates, false otherwise
      */
     public boolean noDuplicates(int[][] array)
     {
         // TODO: code here
-    	
-        return false; // Just a default, replace with actual value (which may be false)
+    	        
+        if (array.length == 0)
+        {
+            return true;
+        }
+        for (int i = 0; i < array.length; i++)
+        {
+            for(int j = 0; j < array[i].length; j++)
+            {
+                
+                if (getFoundCount(array, array[i][j])> 1)
+                {
+                    return false;
+                }
+
+                
+            }
+        }
+       
+        return true; // Just a default, replace with actual value (which may be false)
     }
+
+
+private int getFoundCount(int[][] array, int target)
+{
+    int count = 0;
+    for (int row = 0; row < array.length; row++)
+    {
+        for (int column = 0; column < array[row].length; column++)
+        {
+            if (array[row][column] == target)
+            {
+                count++;
+            }
+        }
+    }
+    return count;
+}
 }
